@@ -25,15 +25,30 @@ public class JpaTest {
 		EntityTransaction tx = manager.getTransaction();
 		tx.begin();
 
-		// TODO create entity
-
+		try {
+			test.createPersonne();
+			} catch (Exception e) {
+			e.printStackTrace();
+			}
 		// TODO persist entity
 
 		tx.commit();
 
 		// TODO run request
-
+		test.listPersonne();
+		manager.close();
 		System.out.println(".. done");
 	}
+	
+	private void createPersonne() {
+		int numOfEmployees = manager.createQuery("Select a From Employee a",
+		Personne.class).getResultList().size();
+		if (numOfPersonne == 0) {
+		String nom = new String ("java");
+		manager.persist(department);
+		manager.persist(new Personne("Jakab Gipsz",department));
+		manager.persist(new Personne("Captain Nemo",department));
+		}
+		}
 
 }
